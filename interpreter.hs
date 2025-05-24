@@ -116,7 +116,7 @@ parseLam ctx = do
   body <- parseTypedTerm (x:ctx)
   return $ TLam body ty
 
--- parsira tip i uklanja razmake sa obe strane
+-- parsira tip i uklanja razmake sa obje strane
 parseTypeWithSpaces :: Parser Type
 parseTypeWithSpaces = skipSpaces *> parseType <* skipSpaces
 
