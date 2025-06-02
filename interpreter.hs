@@ -338,3 +338,21 @@ repl env = do
           case infer ctx t' of
             Nothing -> putStrLn "Type error." >> repl env
             Just _  -> putStrLn (prettyPrint (eval (erase t'))) >> repl env
+
+
+-- Test cases: 
+-- (\x:Int. \y:Int. \z:Int. x + y + z) 1 2 3 -----> 6
+-- (\x:Int. (\y:Int. x + y)) 3 4 ------> 7
+-- \x x ------> error ne mogu parsirati izraz
+-- (\x:Int. [x, x+1]) 5 ---------> [5, 6]
+-- double := \x:Int. x + x
+-- double (2*3) --------> 12
+-- (\x:Int. x + True) 3 -----------> error
+-- (\x:Int. \y:Int. x * y) 3 4 ----------> 12 
+-- (\x:Int. x + 1) 5   ----------> 6
+-- [1,2,3]  ------> [1,2,3]
+-- add := \x:Int. \y:Int. x + y   ----------> add 5 5 ----> 10
+-- (2 + 3) * 4 ----> 20
+-- 2 * 4 --------> 8
+-- const := \x:Int. \y:Int. x  -----> const 3 4 ----> 3
+-- id := \x:Int. x ----> id 42 ----> 42
